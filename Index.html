@@ -1,16 +1,423 @@
-## Hi there 👋
 
-<!--
-**SHIBUJAAT/SHIBUJAAT** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOLDEN | Premium Fashion</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-gold: #D4AF37;
+            --dark-gold: #AA8C2C;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Arial', sans-serif;
+        }
 
-Here are some ideas to get you started:
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+        body {
+            font-family: var(--font-body);
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--black);
+            color: var(--primary-gold);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-gold);
+        }
+
+        .cart-icon {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--primary-gold);
+            color: var(--black);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--primary-gold);
+            color: var(--black);
+            border: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-gold);
+        }
+
+        /* Filter Section */
+        .filters {
+            padding: 2rem 5%;
+            text-align: center;
+            background-color: var(--light-gray);
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: 1px solid var(--black);
+            background: transparent;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--black);
+            color: var(--primary-gold);
+            border-color: var(--black);
+        }
+
+        /* Product Grid */
+        .products {
+            padding: 4rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--black);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            border: 1px solid #eee;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background-color: #ddd;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .product-price {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--black);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary-gold);
+            color: var(--black);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; } /* Simplified for mobile */
+            .logo { font-size: 1.5rem; }
+        }
+    </style>
+    <!-- Importing Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">GOLDEN</div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="filterProducts('all')">Home</a></li>
+                <li><a href="#shop" onclick="filterProducts('men')">Men</a></li>
+                <li><a href="#shop" onclick="filterProducts('women')">Women</a></li>
+                <li><a href="#shop" onclick="filterProducts('kids')">Kids</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon" onclick="alert('Cart feature coming soon!')">
+            🛒 <span class="cart-count" id="cart-count">0</span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Wear the Golden Standard</h1>
+        <p>Premium fashion for the whole family. Elegance, comfort, and style in every thread.</p>
+        <a href="#shop" class="btn">Shop Collection</a>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section class="filters" id="shop">
+        <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+        <button class="filter-btn" onclick="filterProducts('men')">Men</button>
+        <button class="filter-btn" onclick="filterProducts('women')">Women</button>
+        <button class="filter-btn" onclick="filterProducts('kids')">Kids</button>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="products">
+        <h2 class="section-title">Latest Arrivals</h2>
+        <div class="product-grid" id="product-container">
+            <!-- Products will be injected here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h3>GOLDEN</h3>
+        <p>&copy; 2023 GOLDEN Fashion Store. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Product Data
+        const products = [
+            {
+                id: 1,
+                name: "Classic Gold Blazer",
+                category: "men",
+                price: 120.00,
+                image: "https://images.unsplash.com/photo-1594938298603-c8148c47e356?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 2,
+                name: "Silk Evening Gown",
+                category: "women",
+                price: 250.00,
+                image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 3,
+                name: "Summer Denim Jacket",
+                category: "men",
+                price: 85.00,
+                image: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 4,
+                name: "Floral Summer Dress",
+                category: "women",
+                price: 95.00,
+                image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 5,
+                name: "Kids Gold Polo",
+                category: "kids",
+                price: 35.00,
+                image: "https://images.unsplash.com/photo-1519238263496-6361937a2d50?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 6,
+                name: "Kids Party Dress",
+                category: "kids",
+                price: 45.00,
+                image: "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 7,
+                name: "Formal Black Suit",
+                category: "men",
+                price: 300.00,
+                image: "https://images.unsplash.com/photo-1593030761757-71bd90dbe3e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            },
+            {
+                id: 8,
+                name: "Casual White Tee",
+                category: "women",
+                price: 40.00,
+                image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            }
+        ];
+
+        const container = document.getElementById('product-container');
+        const cartCountEl = document.getElementById('cart-count');
+        let cartCount = 0;
+
+        // Function to display products
+        function displayProducts(filter) {
+            container.innerHTML = ''; // Clear current products
+
+            const filteredProducts = filter === 'all' 
+                ? products 
+                : products.filter(product => product.category === filter);
+
+            filteredProducts.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <button class="add-to-cart" onclick="addToCart()">Add to Cart</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Function to handle filtering
+        function filterProducts(category) {
+            // Update active button style
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase() === category || (category === 'all' && btn.innerText === 'All')) {
+                    btn.classList.add('active');
+                }
+            });
+            displayProducts(category);
+        }
+
+        // Simple Cart Logic
+        function addToCart() {
+            cartCount++;
+            cartCountEl.innerText = cartCount;
+            // Optional: Add a small animation or alert
+            // alert("Item added to cart!");
+        }
+
+        // Initial Load
+        displayProducts('all');
+
+    </script>
+</body>
+</html>
